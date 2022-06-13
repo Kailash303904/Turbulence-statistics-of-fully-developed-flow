@@ -828,7 +828,7 @@ for j=1:numel(y_ind)
         end
     end
 
-    r22_x = r22_x./(size(v_grid,2)*size(v_grid,3)^2);
+    r22_x = r22_x./(size(v_grid,2)*size(v_grid,3));
  
     figure
     Fs = length(grid_x)/max(grid_x);
