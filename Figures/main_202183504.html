@@ -1,0 +1,1696 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>main_202183504</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-13"><meta name="DC.source" content="main_202183504.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#5">Reading Grid data</a></li><li><a href="#6">Reading position with velocity data set</a></li><li><a href="#7">Averaging over t, x, z</a></li><li><a href="#8">1. Plot the streamwise, wall-normal, spanwise velocity contours in the x&#8211;z plane and the y&#8211;z plane. Choose any position and time.</a></li><li><a href="#9">Q1 - Part 1 on x-z plane</a></li><li><a href="#10">Q1 - Part 2 - on y-z plane</a></li><li><a href="#12">Q2Compute the friction Reynolds number (Re&#964;), displacement thickness (&#948;*/h), momentum</a></li><li><a href="#13">Q2 - Part1 - Friction Reynolds no (Re&#964;)</a></li><li><a href="#14">Q2 - Part2 - displacement thickness (&#948;*/h)</a></li><li><a href="#15">Q2 - Part-3 momentum thickness (&#952;/h)</a></li><li><a href="#16">Q2 - Part-4 shape factor</a></li><li><a href="#18">Q3 - Plot the mean velocity profile and root-mean-square velocity fluctuations in wall units.</a></li><li><a href="#19">Q3 - Part 2</a></li><li><a href="#24">Q-4 -- . Plot the wall-normal profiles of the total shear stress, viscous shear stress and Reynolds shear</a></li><li><a href="#27">Q-5 - . Plot the joint probability density function of u' and v' at</a></li><li><a href="#30">Q6 -  Using the velocity field data (INS3D_Vel_000001.dat), plot the streamwise velocity</a></li><li><a href="#33">Q7 - Plot the streamwise and spanwise autocorrelation functions R11(rx/h) and R11(rz/h) at a given</a></li><li><a href="#35">8. Compute the one-dimensional energy spectra of streamwise, wall-normal, and spanwise</a></li></ul></div><pre class="codeinput"><span class="comment">% ID - 202183504, Name - Choudhary Kailash Project - 2</span>
+</pre><p>Code Link: <a href="https://github.com/Kailash303904/Theory-of-Turbulence---Project---2.git">GitHub_Code</a></p><pre class="codeinput">clc
+close <span class="string">all</span>
+clear
+</pre><pre class="codeinput">data_path = <span class="string">'I:/Kailash/Course_Project/Turbulence/Project2/Data_set'</span>;
+addpath(data_path);
+</pre><h2 id="5">Reading Grid data</h2><pre class="codeinput">h = 1;
+grid_x = read_pos([data_path, <span class="string">'/Position/Grid_x.dat'</span>]);
+grid_x.Properties.VariableNames = [<span class="string">"i"</span>, <span class="string">"x"</span>];
+grid_x = h*grid_x.x;
+
+grid_y = read_pos([data_path, <span class="string">'/Position/Grid_y.dat'</span>]);
+grid_y.Properties.VariableNames = [<span class="string">"j"</span>, <span class="string">"y"</span>];
+grid_y = h*grid_y.y;
+
+grid_z = read_pos([data_path, <span class="string">'/Position/Grid_z.dat'</span>]);
+grid_z.Properties.VariableNames = [<span class="string">"k"</span>, <span class="string">"z"</span>];
+grid_z = h*grid_z.z;
+</pre><h2 id="6">Reading position with velocity data set</h2><pre class="codeinput"><span class="comment">% consider the fluid is air</span>
+mu = 1.84e-5;
+ro = 1.224;
+nu = mu/ro;
+<span class="comment">%nu = 2.33e-04;</span>
+h = 1;
+
+<span class="comment">% It is given that center line reynolds no is 4200, so</span>
+Re_c = 4200;
+Uc = Re_c*nu/h;
+
+n_files = dir(fullfile(data_path, <span class="string">'/Velocity_field'</span>, <span class="string">'*.dat'</span>));
+
+vel1 = [];
+
+
+<span class="comment">%reading one file to get indices</span>
+filename = strcat(data_path, <span class="string">'/Velocity_field/'</span>, sprintf(<span class="string">'INS3D_Vel_%06d.dat'</span>, 1));
+data = read_vel(filename);
+indexs = [double(data.i), double(data.j), double(data.k)];
+<span class="keyword">parfor</span> i=1:numel(n_files)
+    filename = strcat(data_path, <span class="string">'/Velocity_field/'</span>, sprintf(<span class="string">'INS3D_Vel_%06d.dat'</span>, i));
+    data = read_vel(filename);
+    vel_t = [data.U, data.V, data.W];
+
+    Velocity_Data(:,:,i) = Uc*vel_t;
+    <span class="comment">%i</span>
+<span class="keyword">end</span>
+vel = mean(Velocity_Data,3);
+</pre><pre class="codeoutput">Starting parallel pool (parpool) using the 'local' profile ...
+Connected to the parallel pool (number of workers: 8).
+</pre><h2 id="7">Averaging over t, x, z</h2><pre class="codeinput">ii = unique(indexs(:,1)) ;  nx = length(ii) ;
+jj = unique(indexs(:,2)) ;  ny = length(jj) ;
+kk = unique(indexs(:,3)) ;  nz = length(kk) ;
+
+xi = grid_x(ii);
+yj = grid_y(jj);
+zk = grid_z(kk);
+
+[XX,YY, ZZ] = meshgrid(xi,yj, zk);
+UU = reshape(vel(:,1), nx, ny, nz);
+UU(end,:,:) = mean(UU(end-20:end-10,:,:), 1);
+VV = reshape(vel(:,2), nx, ny, nz);
+WW = reshape(vel(:,3), nx, ny, nz);
+
+u_bar = mean(mean(UU,3),1); <span class="comment">% we can take direct mean because x and z grids are uniform</span>
+v_bar = mean(mean(VV,3),1);
+w_bar = mean(mean(WW,3),1);
+
+vel_bar = [u_bar', v_bar', w_bar'];
+</pre><h2 id="8">1. Plot the streamwise, wall-normal, spanwise velocity contours in the x&#8211;z plane and the y&#8211;z plane. Choose any position and time.</h2><h2 id="9">Q1 - Part 1 on x-z plane</h2><pre class="codeinput">ind = (indexs(:,2) == 96);
+
+pos = indexs(ind,:);
+val = vel(ind,:);
+
+ii = unique(pos(:,1)) ;  nx = length(ii) ;
+kk = unique(pos(:,3)) ;  nz = length(kk) ;
+
+xi = grid_x(ii);
+zk = grid_z(kk);
+
+[XX,ZZ] = meshgrid(xi,zk);
+UU = reshape(val(:,1), nz, nx);
+VV = reshape(val(:,2), nz, nx);
+WW = reshape(val(:,3), nz, nx);
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), UU(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), UU(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(zk(1:end), UU(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+title(<span class="string">'U-Velocity in x-z plane at y = h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'x = '</span>, num2str(grid_x(50))], [<span class="string">'x = '</span>, num2str(grid_x(100))], [<span class="string">'x = '</span>, num2str(grid_x(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'U'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+figure
+CM = jet(6);
+plot(zk(1:end), VV(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), VV(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5)
+plot(zk(1:end), VV(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5)
+title(<span class="string">'V-Velocity in x-z plane at y = h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'x = '</span>, num2str(grid_x(50))], [<span class="string">'x = '</span>, num2str(grid_x(100))], [<span class="string">'x = '</span>, num2str(grid_x(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>)
+ylabel(<span class="string">'V'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), WW(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), WW(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(zk(1:end), WW(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+title(<span class="string">'W-Velocity in y-z plane at x = 2*pi*h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'y = '</span>, num2str(grid_x(50))], [<span class="string">'y = '</span>, num2str(grid_x(100))], [<span class="string">'y = '</span>, num2str(grid_x(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'W'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+
+<span class="comment">% It looks like there is a problem in U-velocity data at z=zmax point. Even</span>
+<span class="comment">% it caused me some problem in plots related to U in z direction.</span>
+</pre><img vspace="5" hspace="5" src="main_202183504_01.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_02.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_03.png" alt=""> <h2 id="10">Q1 - Part 2 - on y-z plane</h2><p>say x = 2*pi*h</p><pre class="codeinput">ind = (indexs(:,1) == 256/2);
+
+pos = indexs(ind,:);
+val = vel(ind,:);
+
+jj = unique(pos(:,2)) ;  ny = length(jj) ;
+kk = unique(pos(:,3)) ;  nz = length(kk) ;
+
+yi = grid_y(jj);
+zk = grid_z(kk);
+
+[YY,ZZ] = meshgrid(yi,zk);
+UU = reshape(val(:,1), nz, ny);
+VV = reshape(val(:,2), nz, ny);
+WW = reshape(val(:,3), nz, ny);
+
+
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), UU(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), UU(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(zk(1:end), UU(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+title(<span class="string">'U-Velocity in y-z plane at x = 2*pi*h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'y = '</span>, num2str(grid_y(50))], [<span class="string">'y = '</span>, num2str(grid_y(100))], [<span class="string">'y = '</span>, num2str(grid_y(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'U'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+figure
+CM = jet(6);
+plot(zk(1:end), VV(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), VV(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(zk(1:end), VV(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+title(<span class="string">'V-Velocity in y-z plane at x = 2*pi*h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'y = '</span>, num2str(grid_y(50))], [<span class="string">'y = '</span>, num2str(grid_y(100))], [<span class="string">'y = '</span>, num2str(grid_y(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'V'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+
+figure
+plot(zk(1:end), WW(1:end,50), <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(zk(1:end), WW(1:end,100), <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(zk(1:end), WW(1:end,150), <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(zk), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+title(<span class="string">'U-Velocity in y-z plane at x = 2*pi*h'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+lgd = {[<span class="string">'y = '</span>, num2str(grid_y(50))], [<span class="string">'y = '</span>, num2str(grid_y(100))], [<span class="string">'y = '</span>, num2str(grid_y(150))]};
+legend(lgd,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+xlabel(<span class="string">'z'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'W'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><img vspace="5" hspace="5" src="main_202183504_04.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_05.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_06.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'nx'</span>,<span class="keyword">...</span>
+    <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'Uc'</span>, <span class="string">'nu'</span>, <span class="string">'Re_c'</span>, <span class="string">'h'</span>);
+</pre><h2 id="12">Q2Compute the friction Reynolds number (Re&#964;), displacement thickness (&#948;*/h), momentum</h2><p>thickness (&#952;/h) and shape factor (H = &#948;/ &#952;). Compare your results with Table 1 in KMM.</p><pre class="codeinput"><span class="comment">% Lets consider t=20sec for the computation of the friction velocity.</span>
+
+<span class="comment">% filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', 41));</span>
+<span class="comment">% data = read_vel(filename);</span>
+</pre><h2 id="13">Q2 - Part1 - Friction Reynolds no (Re&#964;)</h2><pre class="codeinput"><span class="comment">% Velocity at y=0 (wall normal direction)</span>
+<span class="comment">% viscous stress on the wall</span>
+<span class="comment">% for that we need to consider the stream and span wise direction</span>
+<span class="comment">% velocities</span>
+
+
+u1 = sqrt( vel_bar(1,1).^2 + vel_bar(1,3).^2 );
+u_tua = sqrt(nu*u1/grid_y(1));
+
+format <span class="string">short</span>
+Re_tua = u_tua*h./nu;
+disp([<span class="string">'friction Reynolds number (Re&#964;) = '</span>, num2str(Re_tua)]);
+</pre><pre class="codeoutput">friction Reynolds number (Re&#964;) = 178.4352
+</pre><h2 id="14">Q2 - Part2 - displacement thickness (&#948;*/h)</h2><pre class="codeinput"><span class="comment">% &#948;* = integration(1-u/Um, dy) with limit 0 to h</span>
+<span class="comment">% say x = 2*pi*h and z = pi*h(mid points)</span>
+
+
+u_bar = vel_bar(:,1);
+U0 = max(u_bar);<span class="comment">%(1/(2*h))*trapz(grid_y, u_bar);</span>
+
+ind = U0&gt;u_bar(1:round(end/2));
+u = u_bar(ind);
+y = grid_y(ind);
+
+<span class="comment">%plot(u, yi);</span>
+del_star = trapz(grid_y((1:floor(end/2))), (1-u_bar(1:floor(end/2))./U0));
+del_star_by_h = del_star/h;
+disp([<span class="string">'displacement thickness (&#948;*/h) = '</span>, num2str(del_star_by_h)]);
+</pre><pre class="codeoutput">displacement thickness (&#948;*/h) = 0.148
+</pre><h2 id="15">Q2 - Part-3 momentum thickness (&#952;/h)</h2><pre class="codeinput"><span class="comment">%plot(u, yi);</span>
+tha = trapz(grid_y((1:floor(end/2))), (u_bar(1:floor(end/2))./U0).*(1-u_bar(1:floor(end/2))./U0));
+tha_by_h = tha/h;
+disp([<span class="string">'momentum thickness(&#952;/h) = '</span>, num2str(tha_by_h)]);
+</pre><pre class="codeoutput">momentum thickness(&#952;/h) = 0.091489
+</pre><h2 id="16">Q2 - Part-4 shape factor</h2><pre class="codeinput">H = del_star/tha;
+disp([<span class="string">'shape factor (H) = '</span>, num2str(H)]);
+
+heading={<span class="string">'Variable'</span> <span class="string">'KMM'</span> <span class="string">'Our Results'</span>};
+data = [<span class="string">"Re&#964;"</span>, 180, Re_tua; <span class="string">"&#948;*/h"</span>, 0.141, del_star_by_h; <span class="string">"&#952;/h"</span>, 0.087, tha_by_h; <span class="string">"H"</span>, 1.62, H];
+Q2_Results = array2table(data, <span class="string">'VariableNames'</span>, heading)
+
+
+CM = jet(6);
+figure
+plot(u_bar, grid_y, <span class="string">'color'</span>, CM(1, :), <span class="string">'LineWidth'</span>, 2);
+title(<span class="string">'$U_{mean}$ in y-direction'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+axis <span class="string">square</span>
+grid <span class="string">on</span>
+xlabel(<span class="string">'$U_{mean}$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'y/h'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><pre class="codeoutput">shape factor (H) = 1.6176
+
+Q2_Results =
+
+  4&times;3 table
+
+    Variable      KMM      Our Results
+    ________    _______    ___________
+
+     "Re&#964;"      "180"      "178.4352" 
+     "&#948;*/h"     "0.141"    "0.148"    
+     "&#952;/h"      "0.087"    "0.091489" 
+     "H"        "1.62"     "1.6176"   
+
+</pre><img vspace="5" hspace="5" src="main_202183504_07.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'h'</span><span class="keyword">...</span>
+    , <span class="string">'Re_tua'</span>, <span class="string">'del_star'</span>, <span class="string">'tha'</span>, <span class="string">'H'</span>, <span class="string">'u_tua'</span>, <span class="string">'CM'</span>, <span class="string">'nx'</span>, <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'Uc'</span>, <span class="string">'h'</span>, <span class="string">'nu'</span>);
+</pre><h2 id="18">Q3 - Plot the mean velocity profile and root-mean-square velocity fluctuations in wall units.</h2><p>Compare your results with figure 5 and 6 in KMM.</p><pre class="codeinput"><span class="comment">% y-plus</span>
+
+y_plus = grid_y(1:round(end/2)) * u_tua / nu;
+
+u_plus = vel_bar(:,1)./(u_tua);
+u_plus1 = y_plus;
+u_plus2 = 2.5*log(y_plus) + 5.5;
+
+
+figure
+plot(y_plus, u_plus(1:round(end/2)),<span class="string">'LineWidth'</span>, 2);
+hold <span class="string">on</span>
+plot(y_plus(y_plus&lt;15), u_plus1(y_plus&lt;15), <span class="string">'--k'</span>,<span class="string">'LineWidth'</span>, 2);
+plot(y_plus(y_plus&gt;8), u_plus2(y_plus&gt;8), <span class="string">'--k'</span>,<span class="string">'LineWidth'</span>, 2);
+
+set(gca, <span class="string">'XScale'</span>, <span class="string">'log'</span>)
+title(<span class="string">'Fig 5 KMM - Mean velocity profile'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+<span class="comment">%xlim([0, 300])</span>
+grid <span class="string">on</span>
+xlabel(<span class="string">'$y^+$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'$u^+$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><img vspace="5" hspace="5" src="main_202183504_08.png" alt=""> <h2 id="19">Q3 - Part 2</h2><p>n this paper an overbar indicates an average over x, z and t, and a prime indicates perturbation from this average. We have the time and x,z averaged data. We need the one data file to get the perturbation from.</p><pre class="codeinput">n_files = dir(fullfile(data_path, <span class="string">'/Velocity_field'</span>, <span class="string">'*.dat'</span>));
+N = numel(n_files);
+Mean_U_all = zeros(size(indexs));
+<span class="keyword">for</span> i=1:size(indexs,1)
+    Mean_U_all(i,:) = vel_bar(indexs(i,2),:);
+<span class="keyword">end</span>
+
+uvw = Velocity_Data-Mean_U_all;
+
+uvw_rms = sqrt(sum(uvw.^2, 3)./N);
+
+u_rms = reshape(uvw_rms(:,1), nx, ny, nz);
+v_rms = reshape(uvw_rms(:,2), nx, ny, nz);
+w_rms = reshape(uvw_rms(:,3), nx, ny, nz);
+
+
+u_rms_mean = mean(mean(u_rms, 3),1)';
+v_rms_mean = mean(mean(v_rms, 3),1)';
+w_rms_mean = mean(mean(w_rms, 3),1)';
+</pre><pre class="codeinput">clear <span class="string">uvw</span> <span class="string">uvw_rms</span> <span class="string">u_rms</span> <span class="string">v_rms</span> <span class="string">w_rms</span>
+</pre><pre class="codeinput"><span class="comment">%</span>
+<span class="comment">% uu_sqr_sum = 0;</span>
+<span class="comment">% vv_sqr_sum = 0;</span>
+<span class="comment">% ww_sqr_sum = 0;</span>
+<span class="comment">%</span>
+<span class="comment">% for i=1:numel(n_files)</span>
+<span class="comment">%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', i));</span>
+<span class="comment">%     data = read_vel(filename);</span>
+<span class="comment">%     vel_t = Uc.*[data.U, data.V, data.W];</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%     uu = UU-vel_bar(:,1)';</span>
+<span class="comment">%     vv = VV-vel_bar(:,2)';</span>
+<span class="comment">%     ww = WW-vel_bar(:,3)';</span>
+<span class="comment">%</span>
+<span class="comment">% %     vel_t = [data.U, data.V, data.W];</span>
+<span class="comment">% %     vel1(:,:,i) = vel_t;</span>
+<span class="comment">% %     i</span>
+<span class="comment">%</span>
+<span class="comment">%     uu_sqr_sum = uu_sqr_sum + uu.^2;</span>
+<span class="comment">%     vv_sqr_sum = vv_sqr_sum + vv.^2;</span>
+<span class="comment">%     ww_sqr_sum = ww_sqr_sum + ww.^2;</span>
+<span class="comment">%     i</span>
+<span class="comment">% end</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% N = numel(n_files);</span>
+<span class="comment">% u_rms = (uu_sqr_sum./N).^0.5;</span>
+<span class="comment">% v_rms = (vv_sqr_sum./N).^0.5;</span>
+<span class="comment">% w_rms = (ww_sqr_sum./N).^0.5;</span>
+<span class="comment">%</span>
+<span class="comment">% u_rms_mean = mean(mean(u_rms, 3),1)';</span>
+<span class="comment">% v_rms_mean = mean(mean(v_rms, 3),1)';</span>
+<span class="comment">% w_rms_mean = mean(mean(w_rms, 3),1)';</span>
+</pre><pre class="codeinput"><span class="comment">% vel_pertub_t = velocity_mid_line - vel_bar;</span>
+<span class="comment">% N = 41%size(vel_pertub_t,3);</span>
+<span class="comment">% vel_rms = sqrt((1/N) * sum(vel_pertub_t.^2, 3));</span>
+figure
+plot(grid_y, u_rms_mean/u_tua, <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(grid_y), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(grid_y, v_rms_mean./u_tua, <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(grid_y), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(grid_y, w_rms_mean./u_tua, <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(grid_y), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+
+
+title(<span class="string">'Fig. 6(a) KMM - RMS velocity fluctuations normalized by the wall shear velocity'</span>,<span class="string">'FontWeight'</span>,<span class="keyword">...</span>
+    <span class="string">'Bold'</span>, <span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+xlabel(<span class="string">'y/h'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'$u_{rms}, v_{rms}, w_{rms}$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+legend(<span class="string">'$u_{rms}$'</span>, <span class="string">'$v_{rms}$'</span>, <span class="string">'$w_{rms}$'</span>, <span class="string">'Location'</span>, <span class="string">'EastOutside'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+
+
+figure
+
+plot(y_plus(y_plus&lt;80), u_rms_mean(y_plus&lt;80)./u_tua, <span class="string">'-or'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(y_plus(y_plus&lt;80)), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+hold <span class="string">on</span>
+plot(y_plus(y_plus&lt;80), v_rms_mean(y_plus&lt;80)./u_tua, <span class="string">'-&lt;b'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(y_plus(y_plus&lt;80)), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+plot(y_plus(y_plus&lt;80), w_rms_mean(y_plus&lt;80)./u_tua, <span class="string">'-^k'</span>, <span class="string">'MarkerIndices'</span>, 1:5:length(y_plus(y_plus&lt;80)), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+
+
+title(<span class="string">'Fig. 6(b) KMM - RMS velocity fluctuations normalized by the wall shear velocity'</span>,<span class="string">'FontWeight'</span>, <span class="keyword">...</span>
+    <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+xlabel(<span class="string">'y+'</span>);
+ylabel(<span class="string">'$u_{rms}, v_{rms}, w_{rms}$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+legend(<span class="string">'$u_{rms}$'</span>, <span class="string">'$v_{rms}$'</span>, <span class="string">'$w_{rms}$'</span>, <span class="string">'Location'</span>, <span class="string">'EastOutside'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><img vspace="5" hspace="5" src="main_202183504_09.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_10.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'h'</span><span class="keyword">...</span>
+    , <span class="string">'Re_tua'</span>, <span class="string">'del_star'</span>, <span class="string">'tha'</span>, <span class="string">'H'</span>, <span class="string">'u_tua'</span>, <span class="string">'CM'</span>, <span class="string">'N'</span>, <span class="string">'nu'</span>, <span class="string">'u_rms_mean'</span>, <span class="string">'v_rms_mean'</span>, <span class="string">'w_rms_mean'</span>,<span class="keyword">...</span>
+    <span class="string">'nx'</span>, <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'Uc'</span>, <span class="string">'h'</span>, <span class="string">'nu'</span>, <span class="string">'Mean_U_all'</span>);
+</pre><h2 id="24">Q-4 -- . Plot the wall-normal profiles of the total shear stress, viscous shear stress and Reynolds shear</h2><p>stress. Compare your results with figure 10 of KMM.</p><pre class="codeinput">uvw_pert = Velocity_Data - Mean_U_all;
+uv_pert = mean(uvw_pert(:,1,:).*uvw_pert(:,2,:), 3);
+uv_pert = reshape(uv_pert, nx, ny, nz);
+
+uv_pert_mean = mean(mean(uv_pert, 3),1)';
+
+<span class="comment">% n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));</span>
+<span class="comment">% uv_pert = 0;</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% for i=1:numel(n_files)</span>
+<span class="comment">%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', i));</span>
+<span class="comment">%     data = read_vel(filename);</span>
+<span class="comment">%     vel_t = Uc*[data.U, data.V, data.W];</span>
+<span class="comment">%</span>
+<span class="comment">%     UU = reshape(vel_t(:,1), nx, ny, nz);</span>
+<span class="comment">%     VV = reshape(vel_t(:,2), nx, ny, nz);</span>
+<span class="comment">%     WW = reshape(vel_t(:,3), nx, ny, nz);</span>
+<span class="comment">%</span>
+<span class="comment">%     u_pert = UU-vel_bar(:,1)';</span>
+<span class="comment">%     v_pert = VV-vel_bar(:,2)';</span>
+<span class="comment">%     w_pert = WW-vel_bar(:,3)';</span>
+<span class="comment">%</span>
+<span class="comment">%     uv_pert = uv_pert + u_pert.*v_pert;</span>
+<span class="comment">%     i</span>
+<span class="comment">% end</span>
+<span class="comment">%</span>
+<span class="comment">% uv_pert = uv_pert./N;</span>
+<span class="comment">%</span>
+<span class="comment">% uv_pert_mean = mean(mean(uv_pert, 3),1)';</span>
+</pre><pre class="codeinput"><span class="comment">% Normalized Reynolds stress</span>
+uv_N = -uv_pert_mean./(u_tua*u_tua);
+
+u_plus = vel_bar(:,1)./u_tua;
+y = grid_y-h; <span class="comment">% will be in range -h to h</span>
+y_plus = grid_y*u_tua/nu;
+
+u_plus1 = [0; u_plus; 0];
+y1 = [-h; y; h];
+
+grad_u_plus = (u_plus1(2:end)-u_plus1(1:end-1))./((u_tua/nu)*(y1(2:end) - y1(1:end-1)));
+
+stress_N = uv_N + grad_u_plus(1:end-1);
+
+figure
+plot(y, uv_N, <span class="string">'-k'</span>,<span class="string">'LineWidth'</span>, 2);
+hold <span class="string">on</span>
+plot(y, stress_N, <span class="string">'--r'</span>,<span class="string">'LineWidth'</span>, 2);
+
+
+title(<span class="string">'Fig. 10(a) KMM - Normalized shear stress'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 6], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,6])
+xlabel(<span class="string">'y/h'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'Normalized stress'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+legend(<span class="string">'Normalized Reynolds stress'</span>, <span class="string">'Normalized Total stress'</span>, <span class="string">'Location'</span>, <span class="string">'EastOutside'</span>);
+
+
+figure
+plot(y_plus(y_plus&lt;80), uv_N(y_plus&lt;80), <span class="string">'-k'</span>,<span class="string">'LineWidth'</span>, 2);
+
+
+title(<span class="string">'Fig. 10(b) KMM - Normalized shear stress'</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+set(gca, <span class="string">'FontSize'</span>, 15);
+set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+xlabel(<span class="string">'y+'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+ylabel(<span class="string">'Normalized stress'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><img vspace="5" hspace="5" src="main_202183504_11.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_12.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'h'</span><span class="keyword">...</span>
+    , <span class="string">'Re_tua'</span>, <span class="string">'del_star'</span>, <span class="string">'tha'</span>, <span class="string">'H'</span>, <span class="string">'u_tua'</span>, <span class="string">'CM'</span>, <span class="string">'N'</span>, <span class="string">'nu'</span>, <span class="string">'u_rms_mean'</span>, <span class="string">'v_rms_mean'</span>, <span class="string">'w_rms_mean'</span>,<span class="keyword">...</span>
+    <span class="string">'nx'</span>, <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'uv_pert'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'stress_N'</span>, <span class="string">'Uc'</span>, <span class="string">'h'</span>, <span class="string">'nu'</span>, <span class="string">'Mean_U_all'</span>);
+</pre><h2 id="27">Q-5 - . Plot the joint probability density function of u' and v' at</h2><p>y+ = 5, 20, 100 and 180. Compare your results with figure 21 of KMM.</p><pre class="codeinput">y_p = [5, 20, 100, 180];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+<span class="keyword">for</span> i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+<span class="keyword">end</span>
+ind = ismember(indexs(:,2), y_ind);
+data_yp1 = Velocity_Data(ind, :, :);
+
+
+<span class="comment">% parfor n=1:numel(n_files)</span>
+<span class="comment">%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', n));</span>
+<span class="comment">%     data = read_vel(filename);</span>
+<span class="comment">%     vel_t = Uc*[data.U, data.V, data.W];</span>
+<span class="comment">%     data_yp(:,:,n) = vel_t(ind,:);</span>
+<span class="comment">%     n</span>
+<span class="comment">% end</span>
+</pre><pre class="codeinput">clear <span class="string">data_yp</span>
+data_yp(:,:,:) = data_yp1(:,:,35:41);
+indexs_yp = indexs(ind, :);
+x_lim = [10, 10, 5, 5];
+y_lim = [2.5, 10, 5, 5];
+figure
+<span class="keyword">for</span> j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :))-vel_bar(y_ind(j),:);
+    vel_yp = vel_yp./u_tua;
+    vel_j = [];
+    <span class="keyword">for</span> n=1:size(data_yp, 3)
+        vel_j = [vel_j; vel_yp(:,:,n)];
+    <span class="keyword">end</span>
+    subplot(2,2,j)
+    scatter(vel_j(:,1), vel_j(:,2), <span class="string">'+k'</span>);
+    xline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    yline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5)
+    title([<span class="string">'y/h = '</span>, num2str(grid_y(y_ind(j))), <span class="string">', y+ = '</span>, num2str(y_p(j))],<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    box(<span class="string">'on'</span>)
+    set(gca, <span class="string">'FontSize'</span>, 15);
+    set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+    xlabel(<span class="string">"u'"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    ylabel(<span class="string">"v'"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    xlim([-x_lim(j), x_lim(j)]);
+    ylim([-y_lim(j), y_lim(j)]);
+
+    u_desh = linspace(-x_lim(j)*u_tua,x_lim(j)*u_tua,100);
+    v_desh = 8*(-uv_pert_mean(y_ind(j)))./u_desh;
+    hold <span class="string">on</span>
+    plot(u_desh/u_tua, v_desh/u_tua, <span class="string">'-.k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    plot(u_desh/u_tua, -v_desh/u_tua, <span class="string">'-.k'</span>, <span class="string">'linewidth'</span>, 1.5);
+
+<span class="keyword">end</span>
+sgtitle(<span class="string">"Fig. 21 KMM - Distributation of (u', v'), Dashed lines are hyperbolas of $|u'v'|$ = 8x-$\overline{u'v'}$"</span>,<span class="string">'FontWeight'</span>, <span class="string">'Bold'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+</pre><img vspace="5" hspace="5" src="main_202183504_13.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'h'</span><span class="keyword">...</span>
+    , <span class="string">'Re_tua'</span>, <span class="string">'del_star'</span>, <span class="string">'tha'</span>, <span class="string">'H'</span>, <span class="string">'u_tua'</span>, <span class="string">'CM'</span>, <span class="string">'N'</span>, <span class="string">'nu'</span>, <span class="string">'u_rms_mean'</span>, <span class="string">'v_rms_mean'</span>, <span class="string">'w_rms_mean'</span>,<span class="keyword">...</span>
+    <span class="string">'nx'</span>, <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'uv_pert'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'stress_N'</span>, <span class="string">'Uc'</span>, <span class="string">'h'</span>, <span class="string">'nu'</span>, <span class="string">'Mean_U_all'</span>);
+</pre><h2 id="30">Q6 -  Using the velocity field data (INS3D_Vel_000001.dat), plot the streamwise velocity</h2><p>fluctuations signals with respect to x/h at y+ = 5 and 150</p><pre class="codeinput">y_p = [5, 150];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+<span class="keyword">for</span> i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+<span class="keyword">end</span>
+ind = ismember(indexs(:,2), y_ind);
+<span class="comment">%</span>
+<span class="comment">% n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', 1));</span>
+<span class="comment">% data = read_vel(filename);</span>
+<span class="comment">% vel_t = Uc*[data.U, data.V, data.W];</span>
+data_yp = Velocity_Data(ind,:,1); <span class="comment">% because one one t=1sec file</span>
+</pre><pre class="codeinput">indexs_yp = indexs(ind, :);
+x_lim = [13, 13];
+y_lim = [10, 10];
+figure
+<span class="keyword">for</span> j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :))-vel_bar(y_ind(j),:);
+    vel_yp = vel_yp./u_tua;
+    ind_yp = indexs_yp(ind_j, :);
+
+    ind_z = [50, 100, 150, 200, 250];
+    subplot(2,1,j)
+    lgd = {};
+    mrks = {<span class="string">'-or'</span>, <span class="string">'-&lt;b'</span>, <span class="string">'-sk'</span>, <span class="string">'-*m'</span>, <span class="string">'-dg'</span>};
+    <span class="keyword">for</span> k=1:numel(ind_z)
+
+        x_ind = (ind_yp(:, 3) == ind_z(k));
+        x_val = grid_x(ind_yp(x_ind, 1));
+        y_val = vel_yp(x_ind, 1);
+        plot(x_val, y_val, mrks{k}, <span class="string">'MarkerIndices'</span>, 1:5:length(x_val), <span class="string">'LineWidth'</span>, 1, <span class="string">'markersize'</span>, 5);
+        hold <span class="string">on</span>
+        lgd{k} = [<span class="string">'z = '</span>, num2str(grid_z(ind_z(k)))];
+
+    <span class="keyword">end</span>
+
+    legend(lgd,<span class="string">'location'</span>, <span class="string">'eastoutside'</span>);
+    xline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5, <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>);
+    yline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5, <span class="string">'HandleVisibility'</span>, <span class="string">'off'</span>);
+    title(strcat(<span class="string">"u'/$u_\tau$ at y$^{+}$= "</span>, num2str(y_p(j))),<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    box(<span class="string">'on'</span>)
+    set(gca, <span class="string">'FontSize'</span>, 15);
+    set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+    xlabel(<span class="string">"x/h"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    ylabel(<span class="string">"u'/$u_\tau$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    xlim([0, x_lim(j)]);
+    ylim([-y_lim(j), y_lim(j)]);
+
+
+<span class="keyword">end</span>
+<span class="comment">% As I already pointed out that the there is sudden drop in velocity as is</span>
+<span class="comment">% in perturbation at end point in x and z direction. So in 2nd grap we</span>
+<span class="comment">% there is sudden drop in perturbation.</span>
+</pre><img vspace="5" hspace="5" src="main_202183504_14.png" alt=""> <pre class="codeinput">clearvars(<span class="string">'-except'</span>, <span class="string">'Velocity_Data'</span>, <span class="string">'data_path'</span>, <span class="string">'indexs'</span>, <span class="string">'vel_tavg'</span>, <span class="string">'grid_x'</span>, <span class="string">'grid_y'</span>, <span class="string">'grid_z'</span>, <span class="string">'vel_bar'</span>, <span class="string">'h'</span><span class="keyword">...</span>
+    , <span class="string">'Re_tua'</span>, <span class="string">'del_star'</span>, <span class="string">'tha'</span>, <span class="string">'H'</span>, <span class="string">'u_tua'</span>, <span class="string">'CM'</span>, <span class="string">'N'</span>, <span class="string">'nu'</span>, <span class="string">'u_rms_mean'</span>, <span class="string">'v_rms_mean'</span>, <span class="string">'w_rms_mean'</span>,<span class="keyword">...</span>
+    <span class="string">'nx'</span>, <span class="string">'ny'</span>, <span class="string">'nz'</span>, <span class="string">'uv_pert'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'uv_pert_mean'</span>, <span class="string">'stress_N'</span>, <span class="string">'Uc'</span>, <span class="string">'h'</span>, <span class="string">'nu'</span>);
+</pre><h2 id="33">Q7 - Plot the streamwise and spanwise autocorrelation functions R11(rx/h) and R11(rz/h) at a given</h2><p>wall-normal location (yref+ = 5 and 150). Compare your results with figure 2 of KMM. Compute the Taylor micro length scale.</p><pre class="codeinput"><span class="comment">% Dear Sir, Even though the question is asking for R11, I am here plotting</span>
+<span class="comment">% the R22, because data of U-velocity have some strange behavior at end</span>
+<span class="comment">% points. So, Kindly compare the R22(which is Rvv) of KMM paper.</span>
+<span class="comment">% Regards</span>
+
+y_p = [5, 150];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+<span class="keyword">for</span> i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+<span class="keyword">end</span>
+ind = ismember(indexs(:,2), y_ind);
+data_yp = Velocity_Data(ind, :, :);
+</pre><pre class="codeinput">indexs_yp = indexs(ind, :);
+
+<span class="keyword">for</span> j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :));<span class="comment">%-vel_bar(y_ind(j),:);</span>
+    ind_pos = indexs_yp(ind_j, :);
+
+    u_yp = vel_yp(:,2, :); <span class="comment">% v-velocity (to find Rvv)</span>
+    x_yp = grid_x(ind_pos(:,1));
+    z_yp = grid_z(ind_pos(:,3));
+
+
+    u_grid = reshape(u_yp, nx, nz, N);<span class="comment">% (in cols, x direction and in rows z direction)</span>
+    x_grid = reshape(x_yp, nx, nz);
+    z_grid = reshape(z_yp, nx, nz);
+
+
+    r22_x = 0;
+    var_x = 0;
+    <span class="keyword">for</span> n=1:size(u_grid,3)
+        <span class="keyword">for</span> k=1:size(u_grid,2)
+            [r11_xt, lags_r11_x] = autocorr(u_grid(:,k,n), size(u_grid,1)-1);
+            r22_x = r22_x + r11_xt;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+
+    r22_x = r22_x./(size(u_grid,2)*size(u_grid,3));
+<span class="comment">%     var_x = var_x./(size(u_grid,2)*size(u_grid,2));</span>
+<span class="comment">%     r11_x = r11_x./var_x;</span>
+
+    <span class="comment">% second derivative of R11_x at x=0 using 2nd order forward difference</span>
+    df2 = (2*r22_x(1)-5*r22_x(2)+4*r22_x(3)-r22_x(4))./(grid_x(2)-grid_x(1)).^2;
+    lambda_x = abs((-df2/2).^-0.5);
+
+
+    r11_z = 0;
+    var_z = 0;
+
+    <span class="keyword">for</span> n=1:size(u_grid,3)
+        <span class="keyword">for</span> k=1:size(u_grid,1)
+            [r11_zt, lags_r11_z] = autocorr(u_grid(k,:,n), size(u_grid,1)-1);
+            r11_z = r11_z + r11_zt;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    r11_z = r11_z./(size(u_grid,2)*size(u_grid,3));
+
+
+    <span class="comment">% second derivative of R11_x at x=0 using 2nd order forward difference</span>
+    df2 = (2*r11_z(1)-5*r11_z(2)+4*r11_z(3)-r11_z(4))./(grid_z(2)-grid_z(1)).^2;
+    lambda_z = (-df2/2).^-0.5;
+
+    disp([<span class="string">'For y+='</span>, num2str(y_p(j)), <span class="string">', Stream direction &#955;_f = '</span>, num2str(lambda_x)]);
+    disp([<span class="string">'For y+='</span>, num2str(y_p(j)), <span class="string">', Span direction &#955;_f = '</span>, num2str(lambda_z)]);
+
+    figure
+    x11 = linspace(0,5,1000);
+    y11 = 1-(x11/lambda_x).^2;
+
+    plot(grid_x(lags_r11_x+1), r22_x, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    hold <span class="string">on</span>
+    plot(x11(y11&gt;-0.5), y11(y11&gt;-0.5), <span class="string">'--k'</span>, <span class="string">'linewidth'</span>, 1.5)
+    xline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    yline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5)
+    title([<span class="string">'Fig 2(a) - KMM, Stream wise seperations y/h = '</span>, num2str(grid_y(y_ind(j))),<span class="keyword">...</span>
+        <span class="string">', $y^{+}$ = '</span>, num2str(y_p(j))],<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    box(<span class="string">'on'</span>)
+    set(gca, <span class="string">'FontSize'</span>, 15);
+    set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+    xlabel(<span class="string">"x/h(index)"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    ylabel(<span class="string">"$R_{22}(r_x)$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    xlim([0,6]);
+    ylim([-0.5, 1.2]);
+    legend(<span class="string">"$R_{22}(r_x)$"</span>, <span class="string">"$p(r_x) = 1-r_{x}^{2}/{\lambda}_{f}^{2}$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>)
+
+    figure
+    x11 = linspace(0,5,100);
+    y11 = 1-(x11/lambda_z).^2;
+
+    plot(grid_z(lags_r11_z+1), r11_z, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    hold <span class="string">on</span>
+    plot(x11(y11&gt;-0.5), y11(y11&gt;-0.5), <span class="string">'--k'</span>, <span class="string">'linewidth'</span>, 1.5)
+
+    xline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5);
+    yline(0, <span class="string">'-k'</span>, <span class="string">'linewidth'</span>, 1.5)
+    title([<span class="string">'Fig 2(b) - KMM, Span wise seperations y/h = '</span>, num2str(grid_y(y_ind(j))),<span class="keyword">...</span>
+        <span class="string">', $y^{+}$ = '</span>, num2str(y_p(j))],<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    box(<span class="string">'on'</span>)
+    set(gca, <span class="string">'FontSize'</span>, 15);
+    set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+    xlabel(<span class="string">"z/h(index)"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    ylabel(<span class="string">"$R_{22}(r_z)$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    xlim([0,3]);
+    ylim([-0.5 1.2]);
+    legend(<span class="string">"$R_{22}(r_z)$"</span>, <span class="string">"$p(r_z) = 1-r_{z}^{2}/{\lambda}_{f}^{2}$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">For y+=5, Stream direction &#955;_f = 0.2199
+For y+=5, Span direction &#955;_f = 0.052873
+For y+=150, Stream direction &#955;_f = 0.18644
+For y+=150, Span direction &#955;_f = 0.16273
+</pre><img vspace="5" hspace="5" src="main_202183504_15.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_16.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_17.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_18.png" alt=""> <h2 id="35">8. Compute the one-dimensional energy spectra of streamwise, wall-normal, and spanwise</h2><p>velocity at y+ = 5 and 150. Compare your results with figure 3 of KMM. Explain your results in terms of Kolmogorov&#8217;s theory</p><pre class="codeinput">indexs_yp = indexs(ind, :);
+
+<span class="keyword">for</span> j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :))-vel_bar(y_ind(j),:);
+    ind_pos = indexs_yp(ind_j, :);
+
+    u_yp = vel_yp(:,1,:);
+    v_yp = vel_yp(:,2,:);
+    w_yp = vel_yp(:,3,:);
+
+    x_yp = grid_x(ind_pos(:,1));
+    y_yp = grid_z(ind_pos(:,2));
+    z_yp = grid_z(ind_pos(:,3));
+
+
+    <span class="comment">%u_grid = reshape(u_yp, nx, nz, N);% (in cols, z direction and in rows x direction)</span>
+    v_grid = reshape(v_yp, nx, nz, N);<span class="comment">% (in cols, z direction and in rows x direction)</span>
+<span class="comment">%     v_grid = reshape(v_yp, nx, nz, N);</span>
+<span class="comment">%     w_grid = reshape(w_yp, nx, nz, N);</span>
+
+    <span class="comment">%x_grid = reshape(x_yp, nx, nz);</span>
+    y_grid = reshape(y_yp, nx, nz);
+<span class="comment">%     y_grid = reshape(y_yp, nz, nx)';</span>
+<span class="comment">%     z_grid = reshape(z_yp, nz, nx)';</span>
+
+
+    <span class="comment">% In stream wise</span>
+<span class="comment">%     r11_x = 0;</span>
+     r22_x = 0;
+<span class="comment">%     r33_x = 0;</span>
+<span class="comment">%     var_11x = 0;</span>
+     var_22x = 0;
+<span class="comment">%     var_33x = 0;</span>
+    v_avg = 0;
+    fft_avg = 0;
+
+
+    r22_x = 0;
+    <span class="keyword">for</span> n=1:size(u_grid,3)
+        <span class="keyword">for</span> k=1:size(u_grid,2)
+            [r22_xt, lags_r22_x] = autocorr(v_grid(:,k,n), size(v_grid,1)-1);
+            r22_x = r22_x + r22_xt;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    r22_x = r22_x./(size(v_grid,2)*size(v_grid,3));
+
+    figure
+    Fs = length(grid_x)/max(grid_x);
+    L = 256;
+
+    f = 2*pi*Fs*(0:L/2)/L;
+    E_11x = ((1/(pi))*fft(r22_x));
+
+    P1 = real(E_11x(1:L/2+1));
+    plot(f, P1);
+    xlim([0.3, 50])
+    set(gca, <span class="string">'XScale'</span>, <span class="string">'log'</span>)
+    set(gca, <span class="string">'YScale'</span>, <span class="string">'log'</span>)
+    title(<span class="string">'Fig 3(a) - KMM, 1-D Energy Spectra'</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    legend([<span class="string">'y/h ='</span>, num2str(grid_y(y_ind(j))),<span class="keyword">...</span>
+        <span class="string">', $y^{+}$ = '</span>, num2str(y_p(j))],<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    box(<span class="string">'on'</span>)
+    set(gca, <span class="string">'FontSize'</span>, 15);
+    set(gcf, <span class="string">'Units'</span>, <span class="string">'Inches'</span>, <span class="string">'Position'</span>, [0, 0, 12, 8], <span class="string">'PaperUnits'</span>, <span class="string">'Inches'</span>, <span class="string">'PaperSize'</span>, [12,8])
+    xlabel(<span class="string">"$k_{x}$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+    ylabel(<span class="string">"$E_{vv}$"</span>,<span class="string">'Interpreter'</span>,<span class="string">'Latex'</span>);
+
+<span class="keyword">end</span>
+<span class="comment">% The energy spectra plot shows that the distance between the grids is good</span>
+<span class="comment">% enough. The energy density of Evv for higher Kx is very low compared to</span>
+<span class="comment">% the energy spectrum at low kx. Energy spectra show the contribution in</span>
+<span class="comment">% total energy by different length scales. In Evv, most of the energy is</span>
+<span class="comment">% contained by kx&lt;10.</span>
+</pre><img vspace="5" hspace="5" src="main_202183504_19.png" alt=""> <img vspace="5" hspace="5" src="main_202183504_20.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% ID - 202183504, Name - Choudhary Kailash Project - 2
+%%
+% Code Link:
+% <https://github.com/Kailash303904/Theory-of-TurbulenceREPLACE_WITH_DASH_DASH-ProjectREPLACE_WITH_DASH_DASH-2.git GitHub_Code>
+
+%%
+clc
+close all
+clear
+%%
+data_path = 'I:/Kailash/Course_Project/Turbulence/Project2/Data_set';
+addpath(data_path);
+
+%% Reading Grid data
+h = 1; 
+grid_x = read_pos([data_path, '/Position/Grid_x.dat']);
+grid_x.Properties.VariableNames = ["i", "x"];
+grid_x = h*grid_x.x;
+
+grid_y = read_pos([data_path, '/Position/Grid_y.dat']);
+grid_y.Properties.VariableNames = ["j", "y"];
+grid_y = h*grid_y.y;
+
+grid_z = read_pos([data_path, '/Position/Grid_z.dat']);
+grid_z.Properties.VariableNames = ["k", "z"];
+grid_z = h*grid_z.z;
+
+%% Reading position with velocity data set
+
+% consider the fluid is air
+mu = 1.84e-5;
+ro = 1.224;
+nu = mu/ro;
+%nu = 2.33e-04;
+h = 1;
+
+% It is given that center line reynolds no is 4200, so
+Re_c = 4200;
+Uc = Re_c*nu/h;
+
+n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));
+
+vel1 = [];
+
+
+%reading one file to get indices
+filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', 1));
+data = read_vel(filename);
+indexs = [double(data.i), double(data.j), double(data.k)];
+parfor i=1:numel(n_files)
+    filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', i));
+    data = read_vel(filename);
+    vel_t = [data.U, data.V, data.W];
+
+    Velocity_Data(:,:,i) = Uc*vel_t;
+    %i
+end
+vel = mean(Velocity_Data,3);
+%% Averaging over t, x, z
+
+ii = unique(indexs(:,1)) ;  nx = length(ii) ;
+jj = unique(indexs(:,2)) ;  ny = length(jj) ;
+kk = unique(indexs(:,3)) ;  nz = length(kk) ;
+
+xi = grid_x(ii);
+yj = grid_y(jj);
+zk = grid_z(kk);
+
+[XX,YY, ZZ] = meshgrid(xi,yj, zk);
+UU = reshape(vel(:,1), nx, ny, nz);
+UU(end,:,:) = mean(UU(end-20:end-10,:,:), 1);
+VV = reshape(vel(:,2), nx, ny, nz);
+WW = reshape(vel(:,3), nx, ny, nz);
+
+u_bar = mean(mean(UU,3),1); % we can take direct mean because x and z grids are uniform
+v_bar = mean(mean(VV,3),1);
+w_bar = mean(mean(WW,3),1);
+
+vel_bar = [u_bar', v_bar', w_bar'];
+
+%% 1. Plot the streamwise, wall-normal, spanwise velocity contours in the x–z plane and the y–z plane. Choose any position and time.
+%% Q1 - Part 1 on x-z plane
+
+
+ind = (indexs(:,2) == 96);
+
+pos = indexs(ind,:);
+val = vel(ind,:);
+
+ii = unique(pos(:,1)) ;  nx = length(ii) ;
+kk = unique(pos(:,3)) ;  nz = length(kk) ;
+
+xi = grid_x(ii);
+zk = grid_z(kk);
+
+[XX,ZZ] = meshgrid(xi,zk);
+UU = reshape(val(:,1), nz, nx);
+VV = reshape(val(:,2), nz, nx);
+WW = reshape(val(:,3), nz, nx);
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), UU(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), UU(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+plot(zk(1:end), UU(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+title('U-Velocity in x-z plane at y = h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['x = ', num2str(grid_x(50))], ['x = ', num2str(grid_x(100))], ['x = ', num2str(grid_x(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex');
+ylabel('U','Interpreter','Latex');
+
+figure
+CM = jet(6);
+plot(zk(1:end), VV(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), VV(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5)
+plot(zk(1:end), VV(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5)
+title('V-Velocity in x-z plane at y = h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['x = ', num2str(grid_x(50))], ['x = ', num2str(grid_x(100))], ['x = ', num2str(grid_x(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex')
+ylabel('V','Interpreter','Latex');
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), WW(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), WW(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+plot(zk(1:end), WW(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+title('W-Velocity in y-z plane at x = 2*pi*h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['y = ', num2str(grid_x(50))], ['y = ', num2str(grid_x(100))], ['y = ', num2str(grid_x(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex');
+ylabel('W','Interpreter','Latex');
+
+
+% It looks like there is a problem in U-velocity data at z=zmax point. Even
+% it caused me some problem in plots related to U in z direction.
+%% Q1 - Part 2 - on y-z plane
+% say x = 2*pi*h
+ind = (indexs(:,1) == 256/2);
+
+pos = indexs(ind,:);
+val = vel(ind,:);
+
+jj = unique(pos(:,2)) ;  ny = length(jj) ;
+kk = unique(pos(:,3)) ;  nz = length(kk) ;
+
+yi = grid_y(jj);
+zk = grid_z(kk);
+
+[YY,ZZ] = meshgrid(yi,zk);
+UU = reshape(val(:,1), nz, ny);
+VV = reshape(val(:,2), nz, ny);
+WW = reshape(val(:,3), nz, ny);
+
+
+
+
+figure
+CM = jet(6);
+plot(zk(1:end), UU(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), UU(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+plot(zk(1:end), UU(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+title('U-Velocity in y-z plane at x = 2*pi*h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['y = ', num2str(grid_y(50))], ['y = ', num2str(grid_y(100))], ['y = ', num2str(grid_y(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex');
+ylabel('U','Interpreter','Latex');
+
+figure
+CM = jet(6);
+plot(zk(1:end), VV(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), VV(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+plot(zk(1:end), VV(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+title('V-Velocity in y-z plane at x = 2*pi*h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['y = ', num2str(grid_y(50))], ['y = ', num2str(grid_y(100))], ['y = ', num2str(grid_y(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex');
+ylabel('V','Interpreter','Latex');
+
+
+figure
+plot(zk(1:end), WW(1:end,50), '-or', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(zk(1:end), WW(1:end,100), '-<b', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+plot(zk(1:end), WW(1:end,150), '-^k', 'MarkerIndices', 1:5:length(zk), 'LineWidth', 1, 'markersize', 5);
+title('U-Velocity in y-z plane at x = 2*pi*h','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+lgd = {['y = ', num2str(grid_y(50))], ['y = ', num2str(grid_y(100))], ['y = ', num2str(grid_y(150))]};
+legend(lgd,'Interpreter','Latex');
+xlabel('z','Interpreter','Latex');
+ylabel('W','Interpreter','Latex');
+
+
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'nx',...
+    'ny', 'nz', 'Uc', 'nu', 'Re_c', 'h');
+%% Q2Compute the friction Reynolds number (Reτ), displacement thickness (δ*/h), momentum 
+% thickness (θ/h) and shape factor (H = δ/ θ). Compare your results with Table 1 in KMM.
+
+
+% Lets consider t=20sec for the computation of the friction velocity.
+
+% filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', 41));
+% data = read_vel(filename);
+%% Q2 - Part1 - Friction Reynolds no (Reτ)
+
+% Velocity at y=0 (wall normal direction)
+% viscous stress on the wall
+% for that we need to consider the stream and span wise direction
+% velocities
+
+
+u1 = sqrt( vel_bar(1,1).^2 + vel_bar(1,3).^2 );
+u_tua = sqrt(nu*u1/grid_y(1));
+
+format short
+Re_tua = u_tua*h./nu;
+disp(['friction Reynolds number (Reτ) = ', num2str(Re_tua)]);
+
+%% Q2 - Part2 - displacement thickness (δ*/h)
+
+% δ* = integration(1-u/Um, dy) with limit 0 to h
+% say x = 2*pi*h and z = pi*h(mid points)
+
+
+u_bar = vel_bar(:,1);
+U0 = max(u_bar);%(1/(2*h))*trapz(grid_y, u_bar);
+
+ind = U0>u_bar(1:round(end/2));
+u = u_bar(ind);
+y = grid_y(ind);
+
+%plot(u, yi);
+del_star = trapz(grid_y((1:floor(end/2))), (1-u_bar(1:floor(end/2))./U0));
+del_star_by_h = del_star/h;
+disp(['displacement thickness (δ*/h) = ', num2str(del_star_by_h)]);
+
+
+%% Q2 - Part-3 momentum thickness (θ/h) 
+
+%plot(u, yi);
+tha = trapz(grid_y((1:floor(end/2))), (u_bar(1:floor(end/2))./U0).*(1-u_bar(1:floor(end/2))./U0));
+tha_by_h = tha/h;
+disp(['momentum thickness(θ/h) = ', num2str(tha_by_h)]);
+
+%% Q2 - Part-4 shape factor
+
+H = del_star/tha;
+disp(['shape factor (H) = ', num2str(H)]);
+
+heading={'Variable' 'KMM' 'Our Results'};
+data = ["Reτ", 180, Re_tua; "δ*/h", 0.141, del_star_by_h; "θ/h", 0.087, tha_by_h; "H", 1.62, H];
+Q2_Results = array2table(data, 'VariableNames', heading)
+
+
+CM = jet(6);
+figure
+plot(u_bar, grid_y, 'color', CM(1, :), 'LineWidth', 2);
+title('$U_{mean}$ in y-direction','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+axis square
+grid on
+xlabel('$U_{mean}$','Interpreter','Latex');
+ylabel('y/h','Interpreter','Latex');
+
+
+
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'h'...
+    , 'Re_tua', 'del_star', 'tha', 'H', 'u_tua', 'CM', 'nx', 'ny', 'nz', 'Uc', 'h', 'nu');
+
+%% Q3 - Plot the mean velocity profile and root-mean-square velocity fluctuations in wall units. 
+% Compare your results with figure 5 and 6 in KMM.
+
+% y-plus
+
+y_plus = grid_y(1:round(end/2)) * u_tua / nu;
+
+u_plus = vel_bar(:,1)./(u_tua);
+u_plus1 = y_plus;
+u_plus2 = 2.5*log(y_plus) + 5.5;
+
+
+figure
+plot(y_plus, u_plus(1:round(end/2)),'LineWidth', 2);
+hold on
+plot(y_plus(y_plus<15), u_plus1(y_plus<15), 'REPLACE_WITH_DASH_DASHk','LineWidth', 2);
+plot(y_plus(y_plus>8), u_plus2(y_plus>8), 'REPLACE_WITH_DASH_DASHk','LineWidth', 2);
+
+set(gca, 'XScale', 'log')
+title('Fig 5 KMM - Mean velocity profile','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+%xlim([0, 300])
+grid on
+xlabel('$y^+$','Interpreter','Latex');
+ylabel('$u^+$','Interpreter','Latex');
+
+%% Q3 - Part 2
+% n this paper an overbar indicates an average over x, z and t, and a prime indicates 
+% perturbation from this average.
+% We have the time and x,z averaged data. We need the one data file to get
+% the perturbation from.
+
+n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));
+N = numel(n_files);
+Mean_U_all = zeros(size(indexs));
+for i=1:size(indexs,1)
+    Mean_U_all(i,:) = vel_bar(indexs(i,2),:);
+end
+
+uvw = Velocity_Data-Mean_U_all;
+
+uvw_rms = sqrt(sum(uvw.^2, 3)./N);
+
+u_rms = reshape(uvw_rms(:,1), nx, ny, nz);
+v_rms = reshape(uvw_rms(:,2), nx, ny, nz);
+w_rms = reshape(uvw_rms(:,3), nx, ny, nz);
+    
+    
+u_rms_mean = mean(mean(u_rms, 3),1)';
+v_rms_mean = mean(mean(v_rms, 3),1)';
+w_rms_mean = mean(mean(w_rms, 3),1)';
+
+%%
+clear uvw uvw_rms u_rms v_rms w_rms
+%%
+
+% 
+% uu_sqr_sum = 0;
+% vv_sqr_sum = 0;
+% ww_sqr_sum = 0;
+% 
+% for i=1:numel(n_files)
+%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', i));
+%     data = read_vel(filename);
+%     vel_t = Uc.*[data.U, data.V, data.W];
+% 
+% 
+% 
+%     uu = UU-vel_bar(:,1)';
+%     vv = VV-vel_bar(:,2)';
+%     ww = WW-vel_bar(:,3)';
+%     
+% %     vel_t = [data.U, data.V, data.W];
+% %     vel1(:,:,i) = vel_t;
+% %     i
+%     
+%     uu_sqr_sum = uu_sqr_sum + uu.^2;
+%     vv_sqr_sum = vv_sqr_sum + vv.^2;
+%     ww_sqr_sum = ww_sqr_sum + ww.^2;
+%     i
+% end
+% 
+% 
+% N = numel(n_files);
+% u_rms = (uu_sqr_sum./N).^0.5;
+% v_rms = (vv_sqr_sum./N).^0.5;
+% w_rms = (ww_sqr_sum./N).^0.5;
+% 
+% u_rms_mean = mean(mean(u_rms, 3),1)';
+% v_rms_mean = mean(mean(v_rms, 3),1)';
+% w_rms_mean = mean(mean(w_rms, 3),1)';
+
+
+%%
+
+
+% vel_pertub_t = velocity_mid_line - vel_bar;
+% N = 41%size(vel_pertub_t,3);
+% vel_rms = sqrt((1/N) * sum(vel_pertub_t.^2, 3));
+figure
+plot(grid_y, u_rms_mean/u_tua, '-or', 'MarkerIndices', 1:5:length(grid_y), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(grid_y, v_rms_mean./u_tua, '-<b', 'MarkerIndices', 1:5:length(grid_y), 'LineWidth', 1, 'markersize', 5);
+plot(grid_y, w_rms_mean./u_tua, '-^k', 'MarkerIndices', 1:5:length(grid_y), 'LineWidth', 1, 'markersize', 5);
+
+
+title('Fig. 6(a) KMM - RMS velocity fluctuations normalized by the wall shear velocity','FontWeight',...
+    'Bold', 'Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+xlabel('y/h','Interpreter','Latex');
+ylabel('$u_{rms}, v_{rms}, w_{rms}$','Interpreter','Latex');
+legend('$u_{rms}$', '$v_{rms}$', '$w_{rms}$', 'Location', 'EastOutside','Interpreter','Latex');
+
+
+
+figure
+
+plot(y_plus(y_plus<80), u_rms_mean(y_plus<80)./u_tua, '-or', 'MarkerIndices', 1:5:length(y_plus(y_plus<80)), 'LineWidth', 1, 'markersize', 5);
+hold on
+plot(y_plus(y_plus<80), v_rms_mean(y_plus<80)./u_tua, '-<b', 'MarkerIndices', 1:5:length(y_plus(y_plus<80)), 'LineWidth', 1, 'markersize', 5);
+plot(y_plus(y_plus<80), w_rms_mean(y_plus<80)./u_tua, '-^k', 'MarkerIndices', 1:5:length(y_plus(y_plus<80)), 'LineWidth', 1, 'markersize', 5);
+
+
+title('Fig. 6(b) KMM - RMS velocity fluctuations normalized by the wall shear velocity','FontWeight', ...
+    'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+xlabel('y+');
+ylabel('$u_{rms}, v_{rms}, w_{rms}$','Interpreter','Latex');
+legend('$u_{rms}$', '$v_{rms}$', '$w_{rms}$', 'Location', 'EastOutside','Interpreter','Latex');
+
+
+
+
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'h'...
+    , 'Re_tua', 'del_star', 'tha', 'H', 'u_tua', 'CM', 'N', 'nu', 'u_rms_mean', 'v_rms_mean', 'w_rms_mean',...
+    'nx', 'ny', 'nz', 'Uc', 'h', 'nu', 'Mean_U_all');
+
+
+%% Q-4 REPLACE_WITH_DASH_DASH . Plot the wall-normal profiles of the total shear stress, viscous shear stress and Reynolds shear 
+% stress. Compare your results with figure 10 of KMM.
+
+
+
+
+uvw_pert = Velocity_Data - Mean_U_all;
+uv_pert = mean(uvw_pert(:,1,:).*uvw_pert(:,2,:), 3);
+uv_pert = reshape(uv_pert, nx, ny, nz);
+
+uv_pert_mean = mean(mean(uv_pert, 3),1)';
+
+% n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));
+% uv_pert = 0;
+% 
+% 
+% for i=1:numel(n_files)
+%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', i));
+%     data = read_vel(filename);
+%     vel_t = Uc*[data.U, data.V, data.W];
+% 
+%     UU = reshape(vel_t(:,1), nx, ny, nz);
+%     VV = reshape(vel_t(:,2), nx, ny, nz);
+%     WW = reshape(vel_t(:,3), nx, ny, nz);
+% 
+%     u_pert = UU-vel_bar(:,1)';
+%     v_pert = VV-vel_bar(:,2)';
+%     w_pert = WW-vel_bar(:,3)';
+%     
+%     uv_pert = uv_pert + u_pert.*v_pert;
+%     i
+% end
+% 
+% uv_pert = uv_pert./N;
+% 
+% uv_pert_mean = mean(mean(uv_pert, 3),1)';
+
+%%
+
+
+% Normalized Reynolds stress
+uv_N = -uv_pert_mean./(u_tua*u_tua);
+
+u_plus = vel_bar(:,1)./u_tua;
+y = grid_y-h; % will be in range -h to h
+y_plus = grid_y*u_tua/nu;
+
+u_plus1 = [0; u_plus; 0];
+y1 = [-h; y; h];
+
+grad_u_plus = (u_plus1(2:end)-u_plus1(1:end-1))./((u_tua/nu)*(y1(2:end) - y1(1:end-1)));
+
+stress_N = uv_N + grad_u_plus(1:end-1);
+
+figure
+plot(y, uv_N, '-k','LineWidth', 2);
+hold on
+plot(y, stress_N, 'REPLACE_WITH_DASH_DASHr','LineWidth', 2);
+
+
+title('Fig. 10(a) KMM - Normalized shear stress','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12,6])
+xlabel('y/h','Interpreter','Latex');
+ylabel('Normalized stress','Interpreter','Latex');
+legend('Normalized Reynolds stress', 'Normalized Total stress', 'Location', 'EastOutside');
+
+
+figure
+plot(y_plus(y_plus<80), uv_N(y_plus<80), '-k','LineWidth', 2);
+
+
+title('Fig. 10(b) KMM - Normalized shear stress','FontWeight', 'Bold','Interpreter','Latex');
+set(gca, 'FontSize', 15);
+set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+xlabel('y+','Interpreter','Latex');
+ylabel('Normalized stress','Interpreter','Latex');
+
+
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'h'...
+    , 'Re_tua', 'del_star', 'tha', 'H', 'u_tua', 'CM', 'N', 'nu', 'u_rms_mean', 'v_rms_mean', 'w_rms_mean',...
+    'nx', 'ny', 'nz', 'uv_pert', 'uv_pert_mean', 'uv_pert_mean', 'stress_N', 'Uc', 'h', 'nu', 'Mean_U_all');
+
+%% Q-5 - . Plot the joint probability density function of u' and v' at 
+% y+ = 5, 20, 100 and 180. Compare your results with figure 21 of KMM.
+
+y_p = [5, 20, 100, 180];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+for i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+end
+ind = ismember(indexs(:,2), y_ind);
+data_yp1 = Velocity_Data(ind, :, :);
+
+
+% parfor n=1:numel(n_files)
+%     filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', n));
+%     data = read_vel(filename);
+%     vel_t = Uc*[data.U, data.V, data.W];
+%     data_yp(:,:,n) = vel_t(ind,:);
+%     n
+% end
+
+
+%%
+clear data_yp
+data_yp(:,:,:) = data_yp1(:,:,35:41);
+indexs_yp = indexs(ind, :);
+x_lim = [10, 10, 5, 5];
+y_lim = [2.5, 10, 5, 5];
+figure
+for j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :))-vel_bar(y_ind(j),:);
+    vel_yp = vel_yp./u_tua;
+    vel_j = [];
+    for n=1:size(data_yp, 3)
+        vel_j = [vel_j; vel_yp(:,:,n)];
+    end
+    subplot(2,2,j)
+    scatter(vel_j(:,1), vel_j(:,2), '+k');
+    xline(0, '-k', 'linewidth', 1.5);
+    yline(0, '-k', 'linewidth', 1.5)
+    title(['y/h = ', num2str(grid_y(y_ind(j))), ', y+ = ', num2str(y_p(j))],'Interpreter','Latex');
+    box('on')
+    set(gca, 'FontSize', 15);
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+    xlabel("u'",'Interpreter','Latex');
+    ylabel("v'",'Interpreter','Latex');
+    xlim([-x_lim(j), x_lim(j)]);
+    ylim([-y_lim(j), y_lim(j)]);
+    
+    u_desh = linspace(-x_lim(j)*u_tua,x_lim(j)*u_tua,100);
+    v_desh = 8*(-uv_pert_mean(y_ind(j)))./u_desh;
+    hold on
+    plot(u_desh/u_tua, v_desh/u_tua, '-.k', 'linewidth', 1.5);
+    plot(u_desh/u_tua, -v_desh/u_tua, '-.k', 'linewidth', 1.5);
+    
+end
+sgtitle("Fig. 21 KMM - Distributation of (u', v'), Dashed lines are hyperbolas of $|u'v'|$ = 8x-$\overline{u'v'}$",'FontWeight', 'Bold','Interpreter','Latex');
+
+
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'h'...
+    , 'Re_tua', 'del_star', 'tha', 'H', 'u_tua', 'CM', 'N', 'nu', 'u_rms_mean', 'v_rms_mean', 'w_rms_mean',...
+    'nx', 'ny', 'nz', 'uv_pert', 'uv_pert_mean', 'uv_pert_mean', 'stress_N', 'Uc', 'h', 'nu', 'Mean_U_all');
+
+%% Q6 -  Using the velocity field data (INS3D_Vel_000001.dat), plot the streamwise velocity 
+% fluctuations signals with respect to x/h at y+ = 5 and 150
+
+
+y_p = [5, 150];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+for i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+end
+ind = ismember(indexs(:,2), y_ind);
+% 
+% n_files = dir(fullfile(data_path, '/Velocity_field', '*.dat'));
+% 
+% 
+% filename = strcat(data_path, '/Velocity_field/', sprintf('INS3D_Vel_%06d.dat', 1));
+% data = read_vel(filename);
+% vel_t = Uc*[data.U, data.V, data.W];
+data_yp = Velocity_Data(ind,:,1); % because one one t=1sec file
+%%
+
+indexs_yp = indexs(ind, :);
+x_lim = [13, 13];
+y_lim = [10, 10];
+figure
+for j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :))-vel_bar(y_ind(j),:);
+    vel_yp = vel_yp./u_tua;
+    ind_yp = indexs_yp(ind_j, :);
+    
+    ind_z = [50, 100, 150, 200, 250];
+    subplot(2,1,j)
+    lgd = {};
+    mrks = {'-or', '-<b', '-sk', '-*m', '-dg'};
+    for k=1:numel(ind_z)
+        
+        x_ind = (ind_yp(:, 3) == ind_z(k));
+        x_val = grid_x(ind_yp(x_ind, 1));
+        y_val = vel_yp(x_ind, 1);
+        plot(x_val, y_val, mrks{k}, 'MarkerIndices', 1:5:length(x_val), 'LineWidth', 1, 'markersize', 5);
+        hold on
+        lgd{k} = ['z = ', num2str(grid_z(ind_z(k)))];
+        
+    end
+    
+    legend(lgd,'location', 'eastoutside');
+    xline(0, '-k', 'linewidth', 1.5, 'HandleVisibility', 'off');
+    yline(0, '-k', 'linewidth', 1.5, 'HandleVisibility', 'off');
+    title(strcat("u'/$u_\tau$ at y$^{+}$= ", num2str(y_p(j))),'Interpreter','Latex');
+    box('on')
+    set(gca, 'FontSize', 15);
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+    xlabel("x/h",'Interpreter','Latex');
+    ylabel("u'/$u_\tau$",'Interpreter','Latex');
+    xlim([0, x_lim(j)]);
+    ylim([-y_lim(j), y_lim(j)]);
+
+    
+end
+% As I already pointed out that the there is sudden drop in velocity as is
+% in perturbation at end point in x and z direction. So in 2nd grap we
+% there is sudden drop in perturbation.
+%%
+clearvars('-except', 'Velocity_Data', 'data_path', 'indexs', 'vel_tavg', 'grid_x', 'grid_y', 'grid_z', 'vel_bar', 'h'...
+    , 'Re_tua', 'del_star', 'tha', 'H', 'u_tua', 'CM', 'N', 'nu', 'u_rms_mean', 'v_rms_mean', 'w_rms_mean',...
+    'nx', 'ny', 'nz', 'uv_pert', 'uv_pert_mean', 'uv_pert_mean', 'stress_N', 'Uc', 'h', 'nu');
+
+
+
+%% Q7 - Plot the streamwise and spanwise autocorrelation functions R11(rx/h) and R11(rz/h) at a given 
+% wall-normal location (yref+ = 5 and 150). Compare your results with figure 2 of KMM. Compute 
+% the Taylor micro length scale.
+
+% Dear Sir, Even though the question is asking for R11, I am here plotting
+% the R22, because data of U-velocity have some strange behavior at end
+% points. So, Kindly compare the R22(which is Rvv) of KMM paper.
+% Regards
+
+y_p = [5, 150];
+y_i = nu*y_p/u_tua;
+
+y_ind = [];
+for i=1:numel(y_i)
+    dist = abs(grid_y-y_i(i));
+    [val, k] = min(dist);
+    y_ind = [y_ind, k];
+end
+ind = ismember(indexs(:,2), y_ind);
+data_yp = Velocity_Data(ind, :, :);
+
+
+%%
+
+
+indexs_yp = indexs(ind, :);
+
+for j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :));%-vel_bar(y_ind(j),:);
+    ind_pos = indexs_yp(ind_j, :);
+    
+    u_yp = vel_yp(:,2, :); % v-velocity (to find Rvv)
+    x_yp = grid_x(ind_pos(:,1));
+    z_yp = grid_z(ind_pos(:,3));
+    
+    
+    u_grid = reshape(u_yp, nx, nz, N);% (in cols, x direction and in rows z direction)
+    x_grid = reshape(x_yp, nx, nz);
+    z_grid = reshape(z_yp, nx, nz);
+    
+    
+    r22_x = 0;
+    var_x = 0;
+    for n=1:size(u_grid,3)
+        for k=1:size(u_grid,2)
+            [r11_xt, lags_r11_x] = autocorr(u_grid(:,k,n), size(u_grid,1)-1);
+            r22_x = r22_x + r11_xt;
+        end
+    end
+
+
+    r22_x = r22_x./(size(u_grid,2)*size(u_grid,3));
+%     var_x = var_x./(size(u_grid,2)*size(u_grid,2));
+%     r11_x = r11_x./var_x;
+    
+    % second derivative of R11_x at x=0 using 2nd order forward difference
+    df2 = (2*r22_x(1)-5*r22_x(2)+4*r22_x(3)-r22_x(4))./(grid_x(2)-grid_x(1)).^2;
+    lambda_x = abs((-df2/2).^-0.5);
+    
+    
+    r11_z = 0;
+    var_z = 0;
+    
+    for n=1:size(u_grid,3)
+        for k=1:size(u_grid,1)
+            [r11_zt, lags_r11_z] = autocorr(u_grid(k,:,n), size(u_grid,1)-1);
+            r11_z = r11_z + r11_zt;
+        end
+    end
+
+    r11_z = r11_z./(size(u_grid,2)*size(u_grid,3));
+
+    
+    % second derivative of R11_x at x=0 using 2nd order forward difference
+    df2 = (2*r11_z(1)-5*r11_z(2)+4*r11_z(3)-r11_z(4))./(grid_z(2)-grid_z(1)).^2;
+    lambda_z = (-df2/2).^-0.5;
+    
+    disp(['For y+=', num2str(y_p(j)), ', Stream direction λ_f = ', num2str(lambda_x)]);
+    disp(['For y+=', num2str(y_p(j)), ', Span direction λ_f = ', num2str(lambda_z)]);
+
+    figure
+    x11 = linspace(0,5,1000);
+    y11 = 1-(x11/lambda_x).^2;
+    
+    plot(grid_x(lags_r11_x+1), r22_x, '-k', 'linewidth', 1.5);
+    hold on 
+    plot(x11(y11>-0.5), y11(y11>-0.5), 'REPLACE_WITH_DASH_DASHk', 'linewidth', 1.5)
+    xline(0, '-k', 'linewidth', 1.5);
+    yline(0, '-k', 'linewidth', 1.5)
+    title(['Fig 2(a) - KMM, Stream wise seperations y/h = ', num2str(grid_y(y_ind(j))),...
+        ', $y^{+}$ = ', num2str(y_p(j))],'Interpreter','Latex');
+    box('on')
+    set(gca, 'FontSize', 15);
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+    xlabel("x/h(index)",'Interpreter','Latex');
+    ylabel("$R_{22}(r_x)$",'Interpreter','Latex');
+    xlim([0,6]);
+    ylim([-0.5, 1.2]);
+    legend("$R_{22}(r_x)$", "$p(r_x) = 1-r_{x}^{2}/{\lambda}_{f}^{2}$",'Interpreter','Latex')
+    
+    figure
+    x11 = linspace(0,5,100);
+    y11 = 1-(x11/lambda_z).^2;
+    
+    plot(grid_z(lags_r11_z+1), r11_z, '-k', 'linewidth', 1.5);
+    hold on 
+    plot(x11(y11>-0.5), y11(y11>-0.5), 'REPLACE_WITH_DASH_DASHk', 'linewidth', 1.5)
+    
+    xline(0, '-k', 'linewidth', 1.5);
+    yline(0, '-k', 'linewidth', 1.5)
+    title(['Fig 2(b) - KMM, Span wise seperations y/h = ', num2str(grid_y(y_ind(j))),...
+        ', $y^{+}$ = ', num2str(y_p(j))],'Interpreter','Latex');    
+    box('on')
+    set(gca, 'FontSize', 15);
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+    xlabel("z/h(index)",'Interpreter','Latex');
+    ylabel("$R_{22}(r_z)$",'Interpreter','Latex');
+    xlim([0,3]);
+    ylim([-0.5 1.2]);
+    legend("$R_{22}(r_z)$", "$p(r_z) = 1-r_{z}^{2}/{\lambda}_{f}^{2}$",'Interpreter','Latex')
+end
+
+%% 8. Compute the one-dimensional energy spectra of streamwise, wall-normal, and spanwise
+% velocity at y+ = 5 and 150. Compare your results with figure 3 of KMM. Explain your results 
+% in terms of Kolmogorov’s theory
+
+indexs_yp = indexs(ind, :);
+
+for j=1:numel(y_ind)
+    ind_j = (indexs_yp(:,2) == y_ind(j));
+    vel_yp = (data_yp(ind_j, :, :))-vel_bar(y_ind(j),:);
+    ind_pos = indexs_yp(ind_j, :);
+    
+    u_yp = vel_yp(:,1,:);
+    v_yp = vel_yp(:,2,:);
+    w_yp = vel_yp(:,3,:);
+    
+    x_yp = grid_x(ind_pos(:,1));
+    y_yp = grid_z(ind_pos(:,2));
+    z_yp = grid_z(ind_pos(:,3));
+    
+
+    %u_grid = reshape(u_yp, nx, nz, N);% (in cols, z direction and in rows x direction)
+    v_grid = reshape(v_yp, nx, nz, N);% (in cols, z direction and in rows x direction)
+%     v_grid = reshape(v_yp, nx, nz, N);
+%     w_grid = reshape(w_yp, nx, nz, N);
+    
+    %x_grid = reshape(x_yp, nx, nz);
+    y_grid = reshape(y_yp, nx, nz);
+%     y_grid = reshape(y_yp, nz, nx)';
+%     z_grid = reshape(z_yp, nz, nx)';
+
+    
+    % In stream wise
+%     r11_x = 0;
+     r22_x = 0;
+%     r33_x = 0;
+%     var_11x = 0;
+     var_22x = 0;
+%     var_33x = 0;
+    v_avg = 0;
+    fft_avg = 0;
+    
+    
+    r22_x = 0;
+    for n=1:size(u_grid,3)
+        for k=1:size(u_grid,2)
+            [r22_xt, lags_r22_x] = autocorr(v_grid(:,k,n), size(v_grid,1)-1);
+            r22_x = r22_x + r22_xt;
+        end
+    end
+
+    r22_x = r22_x./(size(v_grid,2)*size(v_grid,3));
+ 
+    figure
+    Fs = length(grid_x)/max(grid_x);
+    L = 256;
+    
+    f = 2*pi*Fs*(0:L/2)/L;
+    E_11x = ((1/(pi))*fft(r22_x));
+    
+    P1 = real(E_11x(1:L/2+1));
+    plot(f, P1);
+    xlim([0.3, 50])
+    set(gca, 'XScale', 'log')
+    set(gca, 'YScale', 'log')
+    title('Fig 3(a) - KMM, 1-D Energy Spectra','Interpreter','Latex');
+    legend(['y/h =', num2str(grid_y(y_ind(j))),...
+        ', $y^{+}$ = ', num2str(y_p(j))],'Interpreter','Latex');    
+    box('on')
+    set(gca, 'FontSize', 15);
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 8], 'PaperUnits', 'Inches', 'PaperSize', [12,8])
+    xlabel("$k_{x}$",'Interpreter','Latex');
+    ylabel("$E_{vv}$",'Interpreter','Latex');
+ 
+end
+% The energy spectra plot shows that the distance between the grids is good
+% enough. The energy density of Evv for higher Kx is very low compared to
+% the energy spectrum at low kx. Energy spectra show the contribution in
+% total energy by different length scales. In Evv, most of the energy is
+% contained by kx<10. 
+##### SOURCE END #####
+--></body></html>
